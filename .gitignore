@@ -1,0 +1,32 @@
+# Compiled Java
+*.class
+*.jar
+*.war
+*.ear
+
+# EditPlus / editor backups
+*.bak
+*~
+
+# Build output
+bin/
+out/
+target/
+build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Logs
+*.log
+hs_err_pid*
