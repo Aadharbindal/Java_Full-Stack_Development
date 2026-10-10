@@ -1,50 +1,50 @@
 # 01 — Variables
 
-Variable = memory me ek named box jisme value rakhi jaati hai.
+A variable is a named box in memory that holds a value.
 
 ## Files
 
-| File | Kya dikhata hai |
+| File | What it shows |
 | --- | --- |
-| [VariableExample01.java](VariableExample01.java) | Declaration aur initialization alag-alag: `int age;` phir `age=20;` |
-| [VariableExample02.java](VariableExample02.java) | Value reassign karna — ek hi variable me nayi value daalo, purani chali jaati hai |
-| [VariableExample03.java](VariableExample03.java) | Naming rules — `age1`, `student_marks`, `$sal`, `studentName` sab valid hain |
-| [DefaultValue.java](DefaultValue.java) | **Compile error** — local variable ko bina initialize kiye use karna |
+| [VariableExample01.java](VariableExample01.java) | Declaration and initialization as separate steps: `int age;` then `age=20;` |
+| [VariableExample02.java](VariableExample02.java) | Reassigning a value — put a new value in the same variable, the old one is gone |
+| [VariableExample03.java](VariableExample03.java) | Naming rules — `age1`, `student_marks`, `$sal`, `studentName` are all valid |
+| [DefaultValue.java](DefaultValue.java) | **Compile error** — using a local variable without initializing it |
 
 ## Key points
 
-Variable use karne ke do steps hote hain:
+Using a variable takes two steps:
 
 ```java
-int age;      // 1. declaration — type aur naam bata diya
-age = 20;     // 2. initialization — value de di
+int age;      // 1. declaration — type and name are set
+age = 20;     // 2. initialization — a value is assigned
 ```
 
-Dono ek line me bhi ho sakte hain: `int age = 20;`
+Both can go on one line: `int age = 20;`
 
 **Naming rules:**
 
-- Letter, `_` ya `$` se shuru ho sakta hai — digit se **nahi**
-- Beech me letters, digits, `_`, `$` chal jaate hain
-- Spaces aur keywords (`int`, `class`, `for`...) allowed nahi
-- Case-sensitive hai: `age` aur `Age` do alag variables hain
-- Convention: `camelCase` use karo (`studentName`, na `student_name` na `StudentName`)
+- Can start with a letter, `_`, or `$` — **not** with a digit
+- Letters, digits, `_`, and `$` are allowed after the first character
+- Spaces and keywords (`int`, `class`, `for`, ...) are not allowed
+- Names are case-sensitive: `age` and `Age` are two different variables
+- Convention: use `camelCase` (`studentName`, not `student_name` or `StudentName`)
 
 ## Gotchas
 
-**`DefaultValue.java` compile hi nahi hoga** — aur ye hi iska point hai:
+**`DefaultValue.java` will not compile** — and that is exactly the point:
 
 ```java
 int age;
 System.out.println(age);   // error: variable age might not have been initialized
 ```
 
-**Local variables ko Java default value nahi deta.** Method ke andar banaya variable use karne se pehle initialize karna *compulsory* hai. Fields (class ke andar, method ke bahar) ko default value milti hai — `int` ko `0`, `boolean` ko `false`, object references ko `null`. Wo difference [06-classes-and-objects](../06-classes-and-objects) me dikhta hai, jahan `s.age` print karne par `0` aata hai.
+**Java does not give local variables a default value.** A variable declared inside a method *must* be initialized before it is used. Fields (declared inside a class but outside any method) do get defaults — `0` for `int`, `false` for `boolean`, `null` for object references. That difference shows up in [06-classes-and-objects](../06-classes-and-objects), where printing `s.age` gives `0`.
 
-Error khud dekhne ke liye:
+To see the error yourself:
 
 ```bash
 javac DefaultValue.java
 ```
 
-`VariableExample03.java` me `$sal` aur `student_marks` declare hote hain par print nahi hote — sirf naming dikhane ke liye likhe the. Compile warning nahi aayegi, unused local variables Java me allowed hain.
+In `VariableExample03.java`, `$sal` and `student_marks` are declared but never printed — they exist only to demonstrate naming. There is no compile warning for this; unused local variables are allowed in Java.

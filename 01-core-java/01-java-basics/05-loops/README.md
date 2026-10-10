@@ -1,34 +1,34 @@
 # 05 — Loops
 
-Ek hi kaam baar-baar karwana, bina code repeat kiye.
+Doing the same work repeatedly, without repeating the code.
 
 ## Files
 
-| File | Class ka naam | Kya dikhata hai |
+| File | Class name | What it shows |
 | --- | --- | --- |
-| [LoopsExample.java](LoopsExample.java) | `WhileLoopExample` | `while` loop — hello 10 baar, sum of 1 to 5, multiplication table |
-| [ForWhileLoopExample.java](ForWhileLoopExample.java) | `ForWhileLoopExample` | `for` loop, factorial attempt, nested `for` se star pattern |
-| [DoWhileLoopExample.java](DoWhileLoopExample.java) | `DoWhileLoopExample` | `do-while` — condition false hone par bhi ek baar chalta hai |
-| [ConBreak.java](ConBreak.java) | `ConBreak` | `break` loop todta hai, `continue` ek iteration skip karta hai |
+| [LoopsExample.java](LoopsExample.java) | `WhileLoopExample` | `while` loop — hello ten times, sum of 1 to 5, multiplication table |
+| [ForWhileLoopExample.java](ForWhileLoopExample.java) | `ForWhileLoopExample` | `for` loop, a factorial attempt, star pattern with nested `for` |
+| [DoWhileLoopExample.java](DoWhileLoopExample.java) | `DoWhileLoopExample` | `do-while` — runs once even when the condition is false |
+| [ConBreak.java](ConBreak.java) | `ConBreak` | `break` exits the loop, `continue` skips one iteration |
 
-## Teen loops, ek hi kaam
+## Three loops, the same job
 
-Har loop ke 3 hisse hote hain: **initialization**, **condition**, **update**.
+Every loop has three parts: **initialization**, **condition**, and **update**.
 
 ```java
-// while — hisse alag-alag likhe jaate hain
+// while — the parts are written separately
 int i = 1;                    // init
 while (i <= 10) {             // condition
     System.out.println(i);
     i++;                      // update
 }
 
-// for — teeno ek line me
+// for — all three on one line
 for (int i = 1; i <= 10; i++) {
     System.out.println(i);
 }
 
-// do-while — condition BAAD me check hoti hai
+// do-while — the condition is checked AFTERWARDS
 int i = 1;
 do {
     System.out.println(i);
@@ -36,38 +36,38 @@ do {
 } while (i <= 10);
 ```
 
-| Loop | Condition kab check hoti hai | Minimum kitni baar chalega | Kab use karo |
+| Loop | Condition checked | Minimum runs | When to use |
 | --- | --- | --- | --- |
-| `while` | pehle | 0 baar | Kitni baar chalega pata nahi |
-| `for` | pehle | 0 baar | Count pata hai (1 se 10 tak) |
-| `do-while` | baad me | **1 baar** | Menu — ek baar dikhana to hai hi |
+| `while` | before | 0 times | The number of iterations is not known |
+| `for` | before | 0 times | The count is known (1 to 10) |
+| `do-while` | after | **1 time** | A menu — it has to be shown at least once |
 
 ## `break` vs `continue`
 
 ```java
 for (int i = 1; i <= 10; i++) {
-    if (i == 5) break;        // loop poora khatam → 1 2 3 4
+    if (i == 5) break;        // exits the loop entirely → 1 2 3 4
     System.out.println(i);
 }
 
 for (int i = 1; i <= 10; i++) {
-    if (i % 2 != 0) continue; // ye iteration skip → 2 4 6 8 10
+    if (i % 2 != 0) continue; // skips this iteration → 2 4 6 8 10
     System.out.println(i);
 }
 ```
 
-`break` = bahar nikal jao. `continue` = ye round chhodo, agla shuru karo.
+`break` = get out. `continue` = skip this round, start the next one.
 
 ## Nested loops
 
-Loop ke andar loop — rows aur columns ke liye:
+A loop inside a loop — for rows and columns:
 
 ```java
 for (int row = 1; row <= 3; row++) {
     for (int col = 1; col <= 3; col++) {
         System.out.print("* ");
     }
-    System.out.println();     // row khatam, nayi line
+    System.out.println();     // row finished, new line
 }
 ```
 
@@ -77,40 +77,40 @@ for (int row = 1; row <= 3; row++) {
 * * *
 ```
 
-Yahan `print` (not `println`) inner loop me hai aur `println` outer me — isliye stars ek line me aate hain aur row ke end par line tootti hai.
+Here `print` (not `println`) is in the inner loop and `println` is in the outer one — which is why the stars stay on one line and the line only breaks at the end of a row.
 
-## Compile & run
+## Compile and run
 
 ```bash
 javac LoopsExample.java
-java WhileLoopExample          # file ka naam nahi, CLASS ka naam
+java WhileLoopExample          # the CLASS name, not the file name
 ```
 
 ## Gotchas
 
-**1. `LoopsExample.java` ke andar class ka naam `WhileLoopExample` hai.** Dono match nahi karte, isliye run karte waqt `java WhileLoopExample` likhna padega. Java me ye allowed hai kyunki class `public` nahi hai — `public` class ka naam file ke naam se match karna **compulsory** hota hai.
+**1. `LoopsExample.java` contains a class named `WhileLoopExample`.** The two do not match, so running it requires `java WhileLoopExample`. Java allows this because the class is not `public` — the name of a `public` class **must** match the file name.
 
-**2. `ForWhileLoopExample.java` ka factorial galat answer deta hai.** Ye dhyaan se dekho:
+**2. The factorial in `ForWhileLoopExample.java` gives the wrong answer.** Look closely:
 
 ```java
 int num = 5;
 int fact = 1;
 for (int i = 1; i <= num; i++) {
-    i++;                  // <-- ye extra increment problem hai
+    i++;                  // <-- this extra increment is the problem
     fact = fact * i;
 }
-System.out.println("factorial = " + fact);   // 48 aata hai, 120 nahi
+System.out.println("factorial = " + fact);   // prints 48, not 120
 ```
 
-`i` do jagah badh raha hai — ek body me (`i++`), ek loop header me. To iteration 1, 2, 3 ke bajaye 2, 4, 6 par chalti hai:
+`i` is being incremented in two places — once in the body (`i++`) and once in the loop header. So the iterations land on 2, 4, 6 instead of 1, 2, 3:
 
-| Iteration | body me `i++` ke baad | `fact` |
+| Iteration | `i` after the body's `i++` | `fact` |
 | --- | --- | --- |
 | 1 | 2 | 2 |
 | 2 | 4 | 8 |
 | 3 | 6 | 48 |
 
-`5! = 120` chahiye. Fix: body se `i++` hata do —
+`5! = 120` is what we want. The fix is to remove the `i++` from the body:
 
 ```java
 for (int i = 1; i <= num; i++) {
@@ -118,28 +118,28 @@ for (int i = 1; i <= num; i++) {
 }
 ```
 
-**Lesson: loop variable ko loop ke body me mat chhedo.** Header me jo update likha hai, usi ko kaam karne do.
+**Lesson: do not touch the loop variable inside the loop body.** Let the update in the header do its job.
 
-**3. `DoWhileLoopExample.java` me pehla loop condition false hone par bhi chalta hai** — aur ye bug nahi, pura point hai:
+**3. The first loop in `DoWhileLoopExample.java` runs even though the condition is false** — and this is not a bug, it is the entire point:
 
 ```java
 int i = 10;
 do {
-    System.out.println("Hello World!");   // ek baar print HOTA hai
+    System.out.println("Hello World!");   // this DOES print once
     i++;
-} while (i <= 5);                          // 11 <= 5 false, exit
+} while (i <= 5);                          // 11 <= 5 is false, exit
 ```
 
-`i` shuru se hi 5 se bada hai. `while` loop hota to ek baar bhi na chalta; `do-while` me condition **baad** me check hoti hai, isliye body guaranteed ek baar chalti hai.
+`i` starts out already greater than 5. A `while` loop would not have run at all; in a `do-while` the condition is checked **afterwards**, so the body is guaranteed to run once.
 
-**4. Infinite loop se bacho.** Update statement bhool gaye to condition kabhi false nahi hogi:
+**4. Watch out for infinite loops.** Forget the update statement and the condition never becomes false:
 
 ```java
 int i = 1;
 while (i <= 10) {
     System.out.println(i);
-    // i++ bhool gaye → hamesha chalega
+    // forgot i++ → runs forever
 }
 ```
 
-Aisa ho jaye to terminal me `Ctrl + C` dabao.
+If this happens, press `Ctrl + C` in the terminal.

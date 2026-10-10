@@ -1,32 +1,32 @@
 # 03 — Operators
 
-Data par kaam karne ke tools. Yahan 6 files hain, har ek operator ki ek category.
+The tools for working with data. There are six files here, one per operator category.
 
 ## Files
 
-| File | Operators | Kya dikhata hai |
+| File | Operators | What it shows |
 | --- | --- | --- |
-| [ArithmeticOperators.java](ArithmeticOperators.java) | `+` `-` `*` `/` `%` | Real-world examples (total marks, wallet balance, electricity bill) + String concatenation ka trap |
-| [RelationalOperator.java](RelationalOperator.java) | `>` `<` `>=` `<=` `==` `!=` | Sab comparisons `boolean` return karte hain |
-| [LogicalOperators.java](LogicalOperators.java) | `&&` `\|\|` `!` | Do conditions ko jodna |
-| [CompundAssignment.java](CompundAssignment.java) | `+=` `-=` `*=` `/=` `%=` | `num += 5` = `num = num + 5` ka shortcut |
-| [IncrementDec.java](IncrementDec.java) | `++` `--` | Pre vs post increment ka asli difference |
-| [TernoryOper.java](TernoryOper.java) | `? :` | `if-else` ka one-line version |
+| [ArithmeticOperators.java](ArithmeticOperators.java) | `+` `-` `*` `/` `%` | Real-world examples (total marks, wallet balance, electricity bill) plus the String concatenation trap |
+| [RelationalOperator.java](RelationalOperator.java) | `>` `<` `>=` `<=` `==` `!=` | Every comparison returns a `boolean` |
+| [LogicalOperators.java](LogicalOperators.java) | `&&` `\|\|` `!` | Combining two conditions |
+| [CompundAssignment.java](CompundAssignment.java) | `+=` `-=` `*=` `/=` `%=` | `num += 5` as shorthand for `num = num + 5` |
+| [IncrementDec.java](IncrementDec.java) | `++` `--` | The real difference between pre and post increment |
+| [TernoryOper.java](TernoryOper.java) | `? :` | The one-line version of `if-else` |
 
 ## Key points
 
-**Arithmetic:** `/` integer division karta hai jab dono operands `int` hon — `10/3` ka answer `3` aata hai, `3.33` nahi. `%` remainder deta hai (even/odd check ke liye bahut use hota hai).
+**Arithmetic:** `/` performs integer division when both operands are `int` — `10/3` gives `3`, not `3.33`. `%` gives the remainder (very commonly used for even/odd checks).
 
-**`+` ka dual role:** numbers ke saath addition, `String` ke saath concatenation. Left-to-right chalta hai, aur jahan ek baar `String` mil gaya, wahan se aage sab concatenation ban jaata hai:
+**The dual role of `+`:** addition with numbers, concatenation with `String`. It evaluates left to right, and once a `String` appears, everything from that point on becomes concatenation:
 
 ```java
-System.out.println(10 + 20);           // 30     — dono int, addition
-System.out.println("10" + 20);         // 1020   — String mila, concat
-System.out.println(10 + 20 + "java");  // 30java — pehle 10+20=30, phir concat
-System.out.println("java" + 10 + 20);  // java1020 — shuru se hi concat
+System.out.println(10 + 20);           // 30     — both int, addition
+System.out.println("10" + 20);         // 1020   — String involved, concatenation
+System.out.println(10 + 20 + "java");  // 30java — 10+20=30 first, then concatenation
+System.out.println("java" + 10 + 20);  // java1020 — concatenation from the start
 ```
 
-**Compound assignment:** `num += 5` chhota likhne ka tareeka hai `num = num + 5` ka. `CompundAssignment.java` ka trace:
+**Compound assignment:** `num += 5` is shorthand for `num = num + 5`. The trace through `CompundAssignment.java`:
 
 ```
 start: 10  →  += 5 → 15  →  -= 3 → 12  →  *= 2 → 24  →  /= 4 → 6  →  %= 2 → 0
@@ -34,24 +34,24 @@ start: 10  →  += 5 → 15  →  -= 3 → 12  →  *= 2 → 24  →  /= 4 → 6
 
 **Pre vs post increment:**
 
-| Form | Pehle kya hota hai | Expression ki value |
+| Form | What happens first | Value of the expression |
 | --- | --- | --- |
-| `++c` (pre) | variable badhta hai | **nayi** value |
-| `c++` (post) | purani value use hoti hai | **purani** value, variable baad me badhta hai |
+| `++c` (pre) | the variable is incremented | the **new** value |
+| `c++` (post) | the old value is used | the **old** value; the variable is incremented afterwards |
 
 ```java
 int c = 5;
-int d = ++c;    // c pehle 6 bana, phir d = 6
-int res = c++;  // res ko purani 7... nahi — res = 6, aur c = 7
+int d = ++c;    // c becomes 6 first, so d = 6
+int res = c++;  // res = 6 (the old value), and c becomes 7
 ```
 
-**Ternary:** `condition ? agar_true : agar_false`
+**Ternary:** `condition ? value_if_true : value_if_false`
 
 ```java
 String res = age >= 18 ? "Adult" : "Minor";
 ```
 
-## Compile & run
+## Compile and run
 
 ```bash
 javac IncrementDec.java
@@ -60,17 +60,17 @@ java IncrementDec
 
 ## Gotchas
 
-**1. `ArithmeticOperators.java` me ek comment galat hai.** Line par likha hai:
+**1. One comment in `ArithmeticOperators.java` is wrong.** The line reads:
 
 ```java
 System.out.println(10+20); //20
 ```
 
-Actual output `30` hai. Comment typo hai — code sahi hai.
+The actual output is `30`. The comment is a typo — the code is correct.
 
-**2. Chained increment expressions — paper par solve karna seekho.** Rule: expression **left se right** evaluate hota hai, aur har `++`/`--` turant variable ko badal deta hai.
+**2. Chained increment expressions — learn to solve these on paper.** The rule: the expression is evaluated **left to right**, and each `++`/`--` changes the variable immediately.
 
-`IncrementDec.java` me:
+In `IncrementDec.java`:
 
 ```java
 int k = 5;
@@ -79,7 +79,7 @@ int r = ++k + ++k - k-- + k++ + k--;
 
 Step by step:
 
-| Step | Operation | Value use hui | `k` ab |
+| Step | Operation | Value used | `k` after |
 | --- | --- | --- | --- |
 | 1 | `++k` | 6 | 6 |
 | 2 | `++k` | 7 | 7 |
@@ -87,9 +87,9 @@ Step by step:
 | 4 | `k++` | 6 | 7 |
 | 5 | `k--` | 7 | 6 |
 
-`r = 6 + 7 - 7 + 6 + 7 = 19`, aur `k = 6`.
+So `r = 6 + 7 - 7 + 6 + 7 = 19`, and `k = 6`.
 
-`TernoryOper.java` me:
+In `TernoryOper.java`:
 
 ```java
 int a = 6;
@@ -99,6 +99,6 @@ int a1 = 2;
 int r1 = ++a1 + a1++ * --a1;     // 3 + (3 * 3) = 12,  a1 = 3
 ```
 
-Dusre case me `*` ki precedence `+` se zyada hai, par **evaluation order phir bhi left-to-right** hai — pehle teeno operands ki values nikalti hain (3, 3, 3), *phir* precedence ke hisaab se `3 + 9` hota hai. Ye distinction interviews me poocha jaata hai.
+In the second case `*` has higher precedence than `+`, but **evaluation order is still left to right** — all three operand values are computed first (3, 3, 3), and *only then* is `3 + 9` applied according to precedence. This distinction gets asked in interviews.
 
-Practical advice: real code me aise expressions kabhi na likho. Ek statement me ek hi variable ko ek baar modify karo.
+Practical advice: never write expressions like this in real code. Modify a variable at most once per statement.

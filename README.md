@@ -1,6 +1,6 @@
 # Java Full Stack Development
 
-Mera Java Full Stack Development course ka practice repository. Jo classes me padhaya jaata hai, wahi code topic-wise organise karke yahan rakhta hoon — taaki revision ke time seedha folder kholo aur topic mil jaaye.
+Practice repository for my Java Full Stack Development course. Everything taught in class is organised here topic-wise, so revision is just a matter of opening the right folder.
 
 ## Repository structure
 
@@ -17,20 +17,20 @@ Java_Full-Stack_Development/
         └── 06-classes-and-objects/    Class declaration, object creation
 ```
 
-Numbering seekhne ke order me hai, isliye folder listing hi course ka flow dikha deti hai. Jaise aage ke topics padhte jayenge, naye numbered folders add hote rahenge (`02-advanced-java`, `03-spring`, etc.).
+Folders are numbered in learning order, so the directory listing itself shows the course flow. New numbered folders get added as the course moves forward (`02-advanced-java`, `03-spring`, and so on).
 
 ## How to compile and run
 
-Har program ek standalone file hai. JDK install hone ke baad kisi bhi topic folder me jaake:
+Every program is a standalone file. Once a JDK is installed, go into any topic folder:
 
 ```bash
 javac VariableExample01.java
 java VariableExample01
 ```
 
-Dhyaan rakhna: `java` command ke saath **class ka naam** dete hain, file ka naam nahi. Kuch files me class ka naam file ke naam se match nahi karta (puraane class notes me aisa hua tha) — aise cases topic README me note kiye hue hain.
+Note that the `java` command takes the **class name**, not the file name. In a few files the class name does not match the file name (that is how it was written in class) — those cases are called out in the topic README.
 
-Poore folder ko ek saath compile karna ho:
+To compile a whole folder at once:
 
 ```bash
 javac *.java
@@ -38,9 +38,9 @@ javac *.java
 
 ## Conventions
 
-- Source files sirf `.java` — compiled `.class` files commit nahi karte (dekho [.gitignore](.gitignore)).
-- Ek topic = ek folder, aur us folder me ek `README.md` jo batata hai kis file me kya hai.
-- Class me likha code jaisa hai waisa hi rakha hai, formatting badli nahi — kuch files me jaan-boojh kar errors ya tricky output hai (sikhane ke liye), unhe topic README me explain kiya hai.
+- Only `.java` sources are committed — compiled `.class` files are not (see [.gitignore](.gitignore)).
+- One topic per folder, and each folder has a `README.md` explaining what each file does.
+- Class code is kept exactly as written, with no reformatting. Some files contain deliberate errors or tricky output for teaching purposes; those are explained in the topic README.
 
 ## Topic index
 

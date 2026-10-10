@@ -1,19 +1,19 @@
 # 04 — Control Statements
 
-Decision making: condition ke hisaab se program ka raasta badalna.
+Decision making: changing the program's path based on a condition.
 
 ## Files
 
-| File | Kya dikhata hai | Output |
+| File | What it shows | Output |
 | --- | --- | --- |
-| [IfElseCode.java](IfElseCode.java) | Simple `if-else` — pass/fail, aur `%` se even/odd check | `pass`, `end`, `even` |
-| [IfElseCode02.java](IfElseCode02.java) | `else-if` ladder — marks se grade nikalna | `Grade A+` |
-| [NestedIfExample.java](NestedIfExample.java) | Nested `if` — login check (username ke andar password) | `Wrong password` |
-| [SwitchExample.java](SwitchExample.java) | `switch` — day number se din ka naam | `Monday` |
+| [IfElseCode.java](IfElseCode.java) | Simple `if-else` — pass/fail, and an even/odd check using `%` | `pass`, `end`, `even` |
+| [IfElseCode02.java](IfElseCode02.java) | The `else-if` ladder — deriving a grade from marks | `Grade A+` |
+| [NestedIfExample.java](NestedIfExample.java) | Nested `if` — a login check (password inside username) | `Wrong password` |
+| [SwitchExample.java](SwitchExample.java) | `switch` — day number to day name | `Monday` |
 
 ## Key points
 
-**`if-else`** — do raaste, ek chalega:
+**`if-else`** — two paths, one runs:
 
 ```java
 if (marks >= 45) {
@@ -23,11 +23,11 @@ if (marks >= 45) {
 }
 ```
 
-**`else-if` ladder** — bahut si conditions, par **sirf pehli matching** chalti hai aur baaki skip ho jaati hain. Isliye order important hai: `>= 90` ko `>= 75` se pehle check karna padega, warna 90 marks bhi "Grade A" me chale jayenge.
+**The `else-if` ladder** — many conditions, but only the **first match** runs and the rest are skipped. That makes order important: `>= 90` has to be checked before `>= 75`, otherwise 90 marks would also fall into "Grade A".
 
-**Nested `if`** — ek `if` ke andar dusra `if`. Outer condition true ho tabhi inner check hoti hai.
+**Nested `if`** — one `if` inside another. The inner condition is only checked if the outer one is true.
 
-**`switch`** — ek hi variable ki kai exact values compare karni hon to `else-if` ladder se saaf dikhta hai:
+**`switch`** — when comparing one variable against several exact values, this reads more cleanly than an `else-if` ladder:
 
 ```java
 switch (day) {
@@ -37,19 +37,19 @@ switch (day) {
 }
 ```
 
-- `break` zaruri hai — warna **fall-through** ho jaata hai (matching case ke baad neeche ke sab cases bhi chal jaate hain)
-- `default` optional hai, par rakhna accha hai — koi case match na ho to wo chalta hai
-- `switch` sirf `int`-compatible types, `char`, `String`, aur `enum` par kaam karta hai — `boolean` par nahi
+- `break` is required — without it you get **fall-through** (every case below the matching one also runs)
+- `default` is optional but worth having — it runs when no case matches
+- `switch` works on `int`-compatible types, `char`, `String`, and `enum` — not on `boolean`
 
 ## `if-else` vs `switch`
 
-| Use `if-else` jab | Use `switch` jab |
+| Use `if-else` when | Use `switch` when |
 | --- | --- |
-| Range check karni ho (`marks >= 90`) | Exact value match karni ho (`day == 1`) |
-| Conditions alag-alag variables par hon | Ek hi variable ki kai values hon |
-| Complex `&&` / `\|\|` logic ho | Values ki list flat ho |
+| Checking a range (`marks >= 90`) | Matching an exact value (`day == 1`) |
+| Conditions involve different variables | One variable has several possible values |
+| The logic needs complex `&&` / `\|\|` | The set of values is a flat list |
 
-## Compile & run
+## Compile and run
 
 ```bash
 javac SwitchExample.java
@@ -58,23 +58,23 @@ java SwitchExample
 
 ## Gotchas
 
-**1. `NestedIfExample.java` me `String` comparison galat tareeke se hui hai.** Ye sabse important lesson hai is folder ka:
+**1. `NestedIfExample.java` compares Strings the wrong way.** This is the most important lesson in this folder:
 
 ```java
-if (username == "genie")      // GALAT tareeka
+if (username == "genie")      // WRONG
 ```
 
-`==` references compare karta hai — "kya ye dono *wahi ek* object hain?" — content nahi. Yahan ye **accidentally** kaam kar jaata hai, kyunki `"genie"` ek string literal hai aur Java literals ko String Pool me reuse karta hai, isliye dono taraf same object hai.
+`==` compares references — "are these the *same* object?" — not content. Here it happens to work **by accident**, because `"genie"` is a string literal and Java reuses literals from the String Pool, so both sides are the same object.
 
-Par scanner se input lo, ya `new String("genie")` banao, to turant toot jaata hai:
+But take input from a Scanner, or build the string with `new String("genie")`, and it breaks immediately:
 
 ```java
 String username = new String("genie");
-System.out.println(username == "genie");        // false  (alag object)
+System.out.println(username == "genie");        // false  (different object)
 System.out.println(username.equals("genie"));   // true   (same content)
 ```
 
-**Rule: `String` compare karne ke liye hamesha `.equals()` use karo.** Sahi version:
+**Rule: always use `.equals()` to compare Strings.** The correct version:
 
 ```java
 if (username.equals("genie")) {
@@ -82,17 +82,17 @@ if (username.equals("genie")) {
 }
 ```
 
-Is file ka output `Wrong password` hai, kyunki `password` me `"1231"` set hai par `"123"` se compare ho raha hai.
+This file outputs `Wrong password` because `password` is set to `"1231"` but compared against `"123"`.
 
-**2. `IfElseCode02.java` me ek dead statement hai.** `Grade B` branch ke andar:
+**2. `IfElseCode02.java` contains a dead statement.** Inside the `Grade B` branch:
 
 ```java
 else if (marks >= 60) {
     System.out.println("Grade B");
-    marks = 40;                    // iska koi fayda nahi
+    marks = 40;                    // has no effect
 }
 ```
 
-`marks` ko yahan badalne se kuch nahi hota — `else-if` ladder already decide kar chuki hai, aur uske baad `marks` dobara use hi nahi hota. Ye dikhane ke liye tha ki ladder **ek baar** match karke exit ho jaati hai, dobara top se check nahi karti. Is run me ye branch chalti bhi nahi (`marks = 90` hai, to `Grade A+` par hi ladder khatam).
+Changing `marks` here does nothing — the `else-if` ladder has already made its decision, and `marks` is never used again afterwards. It is there to show that the ladder matches **once** and exits; it does not re-check from the top. In this run the branch does not even execute (`marks` is 90, so the ladder stops at `Grade A+`).
 
-**3. `if` ke saath braces hamesha lagao.** Bina braces `if` sirf agli *ek* statement ko control karta hai — baad me koi line add karne par silent bug ban jaata hai.
+**3. Always use braces with `if`.** Without them, `if` controls only the next *single* statement — which turns into a silent bug the moment a line is added later.

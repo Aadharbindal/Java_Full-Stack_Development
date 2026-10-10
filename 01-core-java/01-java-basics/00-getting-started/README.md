@@ -1,23 +1,23 @@
 # 00 — Getting Started
 
-Sabse pehla step: ek Java program ka structure, aur ye samajhna ki statements upar se neeche, ek-ek karke chalti hain.
+The first step: the structure of a Java program, and understanding that statements run top to bottom, one at a time.
 
 ## Files
 
-| File | Kya dikhata hai |
+| File | What it shows |
 | --- | --- |
-| [Test.java](Test.java) | Minimal program — ek variable banao aur `System.out.println` se 3 baar print karo |
-| [ControlStatements.java](ControlStatements.java) | Sequential execution — 5 print statements apne likhe hue order me hi chalti hain |
+| [Test.java](Test.java) | Minimal program — declare a variable and print it three times with `System.out.println` |
+| [ControlStatements.java](ControlStatements.java) | Sequential execution — five print statements run in exactly the order they are written |
 
 ## Key points
 
-- Har program ek class ke andar hota hai: `class Test { ... }`
-- Program chalta hai `main` method se: `public static void main(String[] args)`
-- JVM `main` ko hi dhundhta hai, isliye signature exactly yahi hona chahiye
-- `System.out.println(...)` print karke next line par chala jaata hai; `System.out.print(...)` line nahi todta
-- Statements ka order = execution ka order. Jo pehle likha hai wo pehle chalega
+- Every program lives inside a class: `class Test { ... }`
+- Execution starts at the `main` method: `public static void main(String[] args)`
+- The JVM looks specifically for `main`, so the signature has to be exactly this
+- `System.out.println(...)` prints and moves to the next line; `System.out.print(...)` does not break the line
+- Statement order is execution order. Whatever is written first runs first
 
-## Compile & run
+## Compile and run
 
 ```bash
 javac Test.java
@@ -34,4 +34,4 @@ Expected output:
 
 ## Gotcha
 
-`ControlStatements.java` naam se lagta hai ki `if`/`switch` hoga, par usme sirf print statements hain. Ye deliberately hai: "control statements" padhne se pehle ye dikhana tha ki **bina** kisi control statement ke flow bilkul straight hota hai. Asli `if`/`switch` [04-control-statements](../04-control-statements) me hain.
+The name `ControlStatements.java` suggests `if` or `switch`, but the file only contains print statements. That is deliberate: before learning control statements, it helps to see that **without** any control statement the flow is perfectly straight. The actual `if` and `switch` examples are in [04-control-statements](../04-control-statements).
