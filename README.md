@@ -17,7 +17,8 @@ Java_Full-Stack_Development/
 │       └── 06-classes-and-objects/    Class declaration, object creation
 └── notes/                             Class notes (PDF)
     ├── 01-java-basics/                Introduction, variables, operators, control statements, arrays
-    └── 02-oop/                        Classes, constructors, OOP principles, interfaces
+    ├── 02-oop/                        Classes, constructors, OOP principles, interfaces
+    └── 03-exception-handling/         Exceptions, try-catch-finally, throw and throws
 ```
 
 Code and theory are kept separate: [01-core-java](01-core-java) holds the programs, [notes](notes) holds the PDF notes from class. Both are numbered in the order topics were taught, and the notes README maps each set of notes to the matching code folder.
@@ -67,5 +68,6 @@ javac *.java
 | --- | --- | --- |
 | [Java basics](notes/01-java-basics) | Introduction to Java, variables and data types, operators, control statements, arrays | 7 |
 | [OOP](notes/02-oop) | Classes and objects, methods, constructors, the four principles, variable types, interfaces | 5 |
+| [Exception handling](notes/03-exception-handling) | Checked vs unchecked exceptions, `try-catch-finally`, `throw` and `throws`, custom exceptions | 1 |
 
 Full index with class dates and page counts: [notes/README.md](notes/README.md).
